@@ -1,0 +1,27 @@
+{% extends "rideService/base_generic.html" %}
+{% block content %}
+<div class="container mt-3">
+    <div class="d-flex mb-3">
+        <div class="p-2 flex-fill bg-info">
+            <h3>Become A Owner!</h3>
+                <li><a href="{% url 'owner-all-requests'%}">Routes</a></li>
+                <li><a href="{% url 'request-create'%}">Request A New Ride</a></li>
+                <li><a href='#'>Another Link 3</a></li>
+        </div>
+        <div class="p-2 flex-fill bg-warning">
+            <h3>Become A Sharer!</h3>
+                <li><a href='#'>Another Link 1</a></li>
+                <li><a href='#'>Another Link 2</a></li>
+                <li><a href='#'>Another Link 3</a></li>
+        </div>
+        <div class="p-2 flex-fill bg-danger">
+            <h3>Become A Driver!</h3>
+            {% if isDriver %}
+                <li><a href="#">View All Request</a></li>
+            {% else %}
+                <li><a href="{% url 'driver-create'%}">Become A Driver</a></li>
+            {% endif%}
+            
+        </div>
+</div>
+{% endblock content %}

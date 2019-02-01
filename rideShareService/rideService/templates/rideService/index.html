@@ -1,0 +1,9 @@
+{% if accounts %}
+    <ul>
+    {% for a in accounts %}
+        <li><a href="/rideService/{{ a.user_name }}/">{{ a.password }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
