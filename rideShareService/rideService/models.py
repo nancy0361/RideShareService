@@ -37,11 +37,11 @@ class Request(models.Model):
         default=0,
         validators=[
             MaxValueValidator(10),
-            MinValueValidator(1)
+            MinValueValidator(0)
         ]
     )
     shareable = models.BooleanField(default=False)
-    vehicle_type = models.CharField(max_length=200, null=True)
+    vehicle_type = models.CharField(max_length=200, null=True, blank=True)
     special_request = models.TextField(blank=True)
     status = models.CharField(max_length=1000)
     last_updated = models.DateTimeField(auto_now_add=True)

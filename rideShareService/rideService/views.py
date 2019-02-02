@@ -7,8 +7,11 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Driver, Request
 from .form import UserRegisterForm
+from django.db.models import Q
+
 from django.views.generic import (
     CreateView,
+    DetailView,
     UpdateView,
     DeleteView
 )
@@ -44,7 +47,8 @@ def role(request):
 
 def ownerRequest(request):
     context = {
-        'requests': Request.objects.filter(ride_owner=request.user)
+        'request_confirmed': Request.objects.filter(ride_owner=request.user).filter(~Q(driver=None)),
+        'requests_unconfirmed': Request.objects.filter(ride_owner=request.user, driver=None)
     }
     return render(request, 'rideService/owner_request.html', context)
 
@@ -60,7 +64,7 @@ def driverRequest(request):
 
 class RequestCreateView(LoginRequiredMixin, CreateView):
     model = Request
-    fields = ['destination', 'arrival_time', 'num_passengers', 'shareable', 'special_request']
+    fields = ['destination', 'arrival_time', 'num_passengers', 'shareable', 'vehicle_type', 'special_request']
     success_url = reverse_lazy('owner-all-requests')
 
     def form_valid(self, form):
@@ -69,9 +73,12 @@ class RequestCreateView(LoginRequiredMixin, CreateView):
         form.instance.status = "open"
         return super().form_valid(form)
 
+class RequestDetailView(DetailView):
+    model = Request
+
 class RequestUpdateView(LoginRequiredMixin, UpdateView):
     model = Request
-    fields = ['destination', 'arrival_time', 'num_passengers', 'shareable', 'special_request']
+    fields = ['destination', 'arrival_time', 'num_passengers', 'shareable', 'vehicle_type', 'special_request']
     template_name = 'rideService/request_update.html'
     success_url = reverse_lazy('owner-all-requests')
 
