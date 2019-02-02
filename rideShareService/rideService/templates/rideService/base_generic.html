@@ -13,7 +13,10 @@
     <div class = 'container-fluid'>
         <div class="row">
                 <div class="col-md-6" style="padding-top: 100px; padding-left: 50px;">
-                    <div class = "div-text">Get a ride in minutes. Or become a driver and earn money on your schedule. Xber is finding you better ways to move, work, and succeed.</div>
+                    <div class = "div-text">
+                        Get a ride in minutes. <br>
+                        Or become a driver and earn money on your schedule. <br>
+                        Xber finds you better ways to move, work, and succeed.</div>
                     {% if user.is_authenticated %}
                     <a href="{% url 'logout' %}">Logout</a>
                     {% endif %}

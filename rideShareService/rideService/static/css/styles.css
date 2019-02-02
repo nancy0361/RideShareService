@@ -97,3 +97,19 @@ a.article-title:hover {
   height: auto;
   max-width: 100%;
 }
+
+.btn {
+	border: none;
+	color: #fff;
+	display: inline-block;
+	padding: 0px 25px;
+	font-weight: normal;
+	font-size: 18px;
+	border-radius: 30px;
+	font-family: 'Montserrat', sans-serif;
+	line-height: 46px;
+	background: #1cd1aa;
+	letter-spacing: 1px;
+	position: relative;
+	z-index: 1;
+}

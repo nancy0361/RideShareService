@@ -12,6 +12,7 @@ urlpatterns = [
     path('request/<int:pk>/update/', views.RequestUpdateView.as_view(), name='request-update'),
     path('request/<int:pk>/delete/', views.RequestDeleteView.as_view(), name='request-delete'),
     path('owner/requests/all', views.ownerRequest, name='owner-all-requests'),
+    path('driver/requests/', views.driverRequest, name='driver-requests'),
     path('driver/create', views.DriverCreateView.as_view(), name='driver-create'),
     path('driver/<int:pk>/update/', views.DriverUpdateView.as_view(), name='driver-update'),
     path('role/', views.role, name = 'role'),

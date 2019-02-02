@@ -46,15 +46,24 @@ def ownerRequest(request):
     }
     return render(request, 'rideService/owner_request.html', context)
 
+def driverRequest(request):
+    thisDriver = Driver.objects.get(account=request.user)
+    context = {
+        'requests': Request.objects.filter(status='open')
+    }
+    return render(request, 'rideService/owner_request.html', context)
+
+
 
 class RequestCreateView(LoginRequiredMixin, CreateView):
     model = Request
     fields = ['destination', 'arrival_time', 'num_passengers', 'shareable', 'special_request']
+    success_url = reverse_lazy('owner-all-requests')
 
     def form_valid(self, form):
         form.instance.ride_owner = self.request.user
         form.instance.confirmed = False
-        form.instance.status = "request created"
+        form.instance.status = "open"
         return super().form_valid(form)
 
 class RequestUpdateView(LoginRequiredMixin, UpdateView):

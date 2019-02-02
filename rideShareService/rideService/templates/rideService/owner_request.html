@@ -1,7 +1,7 @@
-{% extends "rideService/base_generic.html" %}
+{% extends "rideService/homeBase.html" %}
 {% block content %}
     {% for request in requests %}
-        <article class="media content-section">
+        <article class="media content-section" style="margin-right: 20%;margin-left: 20%;">
           <div class="media-body">
             <div class="article-metadata">
                 <h2>{{ request.destination }}</h2>
