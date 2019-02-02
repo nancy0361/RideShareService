@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponse
+from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.contrib import messages
 from .models import Sharer, Driver, Request
 from .form import UserRegisterForm
 from django.views.generic import (
@@ -49,9 +51,9 @@ def ownerRequest(request):
 def driverRequest(request):
     thisDriver = Driver.objects.get(account=request.user)
     context = {
-        'requests': Request.objects.filter(status='open')
+        'requests': Request.objects.filter(status='open',arrival_time__gt=datetime.now())
     }
-    return render(request, 'rideService/owner_request.html', context)
+    return render(request, 'rideService/driver_request.html', context)
 
 
 

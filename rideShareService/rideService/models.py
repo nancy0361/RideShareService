@@ -30,6 +30,8 @@ class Driver(models.Model):
 
 class Request(models.Model):
     ride_owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    driver = models.ForeignKey('Driver', on_delete=models.SET_NULL, blank=True, null=True)
+    sharer = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='sharer_request')
     destination = models.CharField(max_length=1000)
     arrival_time = models.DateTimeField()
     num_passengers = models.IntegerField(

@@ -14,35 +14,13 @@
     <div style="font-size:50px; color:#000; margin-left: 10%; background-color:#fff; opacity: 0.7;">
         Welcome To Xber Ride Share System
     </div>
-    <a href="{% url 'role' %}" style="margin-right: 5%; border: none;
-        color: #fff;
-        display: inline-block;
-        padding: 0px 25px;
-        font-weight: normal;
-        font-size: 18px;
-        border-radius: 30px;
-        font-family: 'Montserrat', sans-serif;
-        line-height: 46px;
-        background: #1cd1aa;
-        letter-spacing: 1px;
-        position: absolute;
-        right:250px; top:100px;
-        z-index: 1; ">Homepage</a>
+    <a href="{% url 'role' %}" class="btn btn-secondary btn-sm mt-1 mb-1" style="position: absolute; right:250px; top:100px;">
+        Homepage
+    </a>
     {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}" style="margin-right: 5%; border: none;
-        color: #fff;
-        display: inline-block;
-        padding: 0px 25px;
-        font-weight: normal;
-        font-size: 18px;
-        border-radius: 30px;
-        font-family: 'Montserrat', sans-serif;
-        line-height: 46px;
-        background: #1cd1aa;
-        letter-spacing: 1px;
-        position: absolute;
-        right:100px; top:100px;
-        z-index: 1; ">Logout</a>
+        <a href="{% url 'logout' %}" class="btn btn-secondary btn-sm mt-1 mb-1" style="position: absolute; right:100px; top:100px;">
+            Logout
+        </a>
     {% endif %}
     <div class = 'container-fluid' style="margin-top: 10%">
             {% if messages %}
