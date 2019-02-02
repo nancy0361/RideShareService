@@ -3,14 +3,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 # from rideService.models import Sharer, Driver, Request
 
-class Sharer(models.Model):
-    account = models.ForeignKey(User, on_delete=models.CASCADE)
-    status = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.account.username + " : " + self.status
-
-
 class Driver(models.Model):
     account = models.ForeignKey(User, on_delete=models.CASCADE)
     vehicle_type = models.CharField(max_length=200)
@@ -41,9 +33,16 @@ class Request(models.Model):
             MinValueValidator(1)
         ]
     )
+    num_sharer = models.IntegerField(
+        default=0,
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(1)
+        ]
+    )
     shareable = models.BooleanField(default=False)
+    vehicle_type = models.CharField(max_length=200, null=True)
     special_request = models.TextField(blank=True)
-    confirmed = models.BooleanField(default=False)
     status = models.CharField(max_length=1000)
     last_updated = models.DateTimeField(auto_now_add=True)
 

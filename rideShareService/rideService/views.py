@@ -5,7 +5,7 @@ from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Sharer, Driver, Request
+from .models import Driver, Request
 from .form import UserRegisterForm
 from django.views.generic import (
     CreateView,
@@ -50,6 +50,7 @@ def ownerRequest(request):
 
 def driverRequest(request):
     thisDriver = Driver.objects.get(account=request.user)
+    maxPassengerNum = thisDriver.max_passengers
     context = {
         'requests': Request.objects.filter(status='open',arrival_time__gt=datetime.now())
     }
