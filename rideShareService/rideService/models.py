@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
-# from rideService.models import Sharer, Driver, Request
+# from rideService.models import Driver, Request
 
 class Driver(models.Model):
     account = models.ForeignKey(User, on_delete=models.CASCADE)

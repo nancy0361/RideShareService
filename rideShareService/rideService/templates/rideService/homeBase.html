@@ -10,9 +10,14 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <!-- <link href="../../static/css/style2.css" rel="stylesheet"> -->
 </head>
-<body>
-    <div style="font-size:50px; color:#000; margin-left: 10%; background-color:#fff; opacity: 0.7;">
-        Welcome To Xber Ride Share System
+<body style="margin-top: 40px;">
+    <div style="margin-left: 80px">
+        <h2 style="color: #1cd1aa; font-size: 50px;font-weight: bold">
+            Welcome To
+        </h2>
+        <h2 style="color: #ffffff; font-size: 50px;font-weight: bold">
+            Xber Ride Share System
+        </h2>
     </div>
     <a href="{% url 'role' %}" class="btn btn-secondary btn-sm mt-1 mb-1" style="position: absolute; right:250px; top:100px;">
         Homepage
@@ -22,7 +27,7 @@
             Logout
         </a>
     {% endif %}
-    <div class = 'container-fluid' style="margin-top: 10%">
+    <div class = 'container-fluid' style="margin-top: 5%">
             {% if messages %}
             {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">

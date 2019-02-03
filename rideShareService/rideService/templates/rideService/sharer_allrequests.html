@@ -1,0 +1,25 @@
+{% extends "rideService/homeBase.html" %}
+{% block content %}
+{% if Certified_Request %}
+    {% for request in Certified_Request %}
+        <article class="media content-section" style="margin-right: 20%;margin-left: 20%;">
+          <div class="media-body">
+                <div class="article-metadata">
+                    <h2>Destination: {{ request.destination }}</h2>
+                <div>
+                        <p class="text-muted">Created by: {{ request.ride_owner.username}}</p>
+                        <p class="article-content">Arrival Time: {{ request.arrival_time}}</p>
+                        <p class="article-content">Status: {{ request.status}}</p>
+                        <p class="article-content">Last Update Time: {{ request.last_updated}}</p>
+                        <p class="article-content">Number of Passengers: {{ request.num_passengers}}</p>
+                        <a style="position: relative; right:10px;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'join-ride' request.id num_sharer %}">
+                            Join This Ride
+                        </a>
+                        <a class="btn btn-outline-secondary" href="{% url 'role'%}">Cancel</a>
+                </div>
+        </article>
+    {% endfor %}
+{% else %}
+    <h2>No Availiable Rides.</h2>
+{% endif %}
+{% endblock content %}

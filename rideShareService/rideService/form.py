@@ -8,3 +8,8 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class SharerSearchForm(forms.Form):
+    destinationFromSharer = forms.CharField(label='destination_Sharer', max_length=100)
+    arrival_timeFromSharer = forms.DateTimeField()
+    num_sharer = forms.IntegerField(max_value=10, min_value=1)

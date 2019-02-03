@@ -13,18 +13,12 @@
                 <p class="article-content">Number of Passengers: {{ object.num_passengers}}</p>
                 
                 {% if object.sharer %}
-                    <p class="article-content">{{ object.sharer.username}} sharers this ride with you.</p>
+                    <p class="article-content">{{ object.sharer.username}} sharers this ride.</p>
                     <p class="article-content">Number of shsrers: {{ object.num_sharer}}</p>
-                {% else %}
-                    <p class="article-content">No one shares this ride with you.</p>
                 {% endif %}
-
-                {% if object.driver %}
-                    <p class="article-content">{{ object.driver.account.username}} is your driver.</p>
-                    <p class="article-content">Vehicle Type: {{ object.driver.vehicle_type}}</p>
-                    <p class="article-content">License Plate Number: {{ object.driver.license_number}}</p>
-                    <p class="article-content">Maximum Passenger Number: {{ object.driver.max_passengers}}</p>
-                {% endif %}
+                <a style="position: relative; right:10px;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'accept-request' object.id %}">
+                        Accpet This Request
+                </a>
             </div>
         </article>
 {% endblock content %}

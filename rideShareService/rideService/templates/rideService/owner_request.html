@@ -1,23 +1,23 @@
 {% extends "rideService/homeBase.html" %}
 {% block content %}
 {%if request_confirmed%}
-    <div style="font-size:50px; color:#000; margin-left: 15%; margin-right: 15%; background-color:#fff; opacity: 0.7;">
+    <div style="font-size:50px; color:#000; margin-left: 15%; margin-right: 15%; margin-bottom: 5%; background-color:#fff; opacity: 0.7;">
         <h2 style = "text-align:center;">On-going Rides</h2>
     </div>
 {%endif%}
     {% for request in request_confirmed %}
         <article class="media content-section" style="margin-right: 20%;margin-left: 20%;">
-          <div class="media-body">
-            <div class="article-metadata">
-                <h2>{{ request.destination }}</h2>
-                <small class="text-muted">Created by: {{ request.ride_owner.username}}</small>
-            <div>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'request-update' request.id %}">Update</a>
-                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'request-delete' request.id %}">Delete</a>
-            </div>
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h2>Destination: {{ request.destination }}  
+                      <a style="position: relative; left:270px;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'request-detail' request.id %}">Detail</a>
+                      <a style="position: relative; left:280px;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'request-update' request.id %}">Edit</a>
+                      <a style="position: relative; left:290px;" class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'request-delete' request.id %}">Delete</a>
+                    </h2>
+                    <p class="article-content">Arrival Time: {{ request.arrival_time}}</p>
         </article>
     {% endfor %}
-    <div style="font-size:50px; color:#000; margin-left: 15%;margin-right: 15%; background-color:#fff; opacity: 0.7;">
+    <div style="font-size:50px; color:#000; margin-left: 15%;margin-right: 15%; margin-top: 5%; margin-bottom: 5%; background-color:#fff; opacity: 0.7;">
         <h2 style = "text-align:center;">Unconfirmed Requests</h2>
     </div>
     {% for request in requests_unconfirmed %}
