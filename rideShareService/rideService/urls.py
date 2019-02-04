@@ -6,6 +6,7 @@ urlpatterns = [
     # Test 
     path('', views.index, name='index'),
     path('home/', views.home, name='home'),
+    path('send/', views.email, name='email'),
 
     # Account
     path('register/', views.register, name='register'),

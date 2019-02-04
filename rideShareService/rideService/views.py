@@ -28,6 +28,13 @@ def home(request):
     context = {'accounts' : accounts}
     return render(request, 'rideService/index.html', context)
 
+def email(request):
+    subject = "Test Email from django"
+    message = "Happy New Year!"
+    fromMail = "xBer@ece.com"
+    toMail = ["naixin.yu@duke.edu"]
+    send_mail(subject, message, fromMail, toMail, fail_silently=False)
+    return HttpResponse("Send E-mail Success!")
 
 # Account
 def register(request):
@@ -151,6 +158,7 @@ def driverAccpetRequest(request, pk, time):
     thisRequest.driver = Driver.objects.get(account=request.user)
     thisRequest.status = 'confirmed'
     thisRequest.save()
+    sendCloseEmail(pk)
     return redirect('role')
 
 @login_required
@@ -176,7 +184,6 @@ def DriverCompleteRides(request, pk):
     thisRequest = Request.objects.get(id=pk)
     thisRequest.status = 'complete'
     thisRequest.save()
-    # sendCloseEmail(pk)
     return driverConfirmedRides(request)
 
 # Registration/Edit (Driver)
@@ -263,18 +270,13 @@ def sharerViewRides(request):
     return render(request, 'rideService/sharer_request_detail.html', context)
 
 
-
-
-
-
-# def sendCloseEmail(pk):
-#     thisRequest = Request.objects.get(id=pk)
-#     subject = "Your Ride to " + thisRequest.destination + " is Complete"
-#     message = "Thank you fro riding with Xber! Your Ride to " + thisRequest.destination + " is Complete"
-#     fromMail = "xBer@ece.com"
-#     toMail = [thisRequest.ride_owner.email]
-#     if thisRequest.num_sharer > 0:
-#         toMail.append(thisRequest.sharer.email)
-#     send_mail(subject, message, fromMail, toMail)
+def sendCloseEmail(pk):
+    thisRequest = Request.objects.get(id=pk)
+    subject = "Your Ride to " + thisRequest.destination + " is Complete"
+    message = "Thank you for riding with Xber! Your Ride to " + thisRequest.destination + " is Confirmed."
+    toMail = [thisRequest.ride_owner.email]
+    if thisRequest.num_sharer > 0:
+        toMail.append(thisRequest.sharer.email)
+    send_mail(subject, message, "xBer@ece.com", toMail)
 
 
