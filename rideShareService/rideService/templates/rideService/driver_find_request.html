@@ -1,23 +1,27 @@
 {% extends "rideService/homeBase.html" %}
 {% block content %}
+{%if requests%}
     <div style="font-size:50px; color:#000; margin-left: 15%; margin-right: 15%; background-color:#fff; opacity: 0.7;">
-        <h2 style = "text-align:center;">Hello, {{driver.account.username}}! Which request do you want to accpet?</h2>
+        <h2 style = "text-align:center;">Hello, {{driver.account.username}}! Which request do you want to confirm?</h2>
     </div>
     {% for request in requests %}
         <article class="media content-section" style="margin-right: 20%;margin-left: 20%; margin-top: 5%;">
             <div class="media-body">
                 <div class="article-metadata">
-                    <h2>Destination: {{ request.destination }}  
-                            <a style="position: relative; left:270px;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'driver-request-detail' request.id %}">
+                    <h3>Destination: {{ request.destination }}  
+                            <a style="margin-right: 5px; float:right;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'driver-request-detail' request.id %}">
                                 View Details
                             </a>
-                            <a style="position: relative; left:290px;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'accept-request' request.id request.last_updated%}">
-                                Accpet Request
+                            <a style="margin-right: 20px; float:right;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'accept-request' request.id request.last_updated%}">
+                                Confirm Request
                             </a>
-                        </h2>
+                        </h3>
                     <p class="article-content">Arrival Time: {{ request.arrival_time}}</p>
                 </div>
             </div>
         </article>
     {% endfor %}
+    {%else%}
+        <p style="margin-top:10%; font-size:30px; color:#ffffff;text-align:center;">Sorry... No one ask for a RideService Right Now...</p>>
+{%endif%}
 {% endblock content %}

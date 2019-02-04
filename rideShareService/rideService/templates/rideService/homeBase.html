@@ -30,7 +30,7 @@
     <div class = 'container-fluid' style="margin-top: 5%">
             {% if messages %}
             {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
+            <div class="alert alert-{{ message.tags }}" style="margin-left:20%; margin-right:20%; font-size: 30px; text-align: center">
                 {{ message }}
             </div>
             {% endfor %}

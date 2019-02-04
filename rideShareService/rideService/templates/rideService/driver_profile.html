@@ -1,0 +1,19 @@
+{% extends "rideService/homeBase.html" %}
+{% block content %}
+        <article class="media content-section" style="margin-right: 20%;margin-left: 20%;">
+          <div class="media-body">
+            <div class="article-metadata">
+                <h2>Driver Name: {{ object.account.username }}</h2>
+            </div>
+                <p class="text-muted">Vehicle Type: {{ object.vehicle_type}}</p>
+                <p class="text-muted">License Plate Number: {{ object.license_number}}</p>
+                <p class="text-muted">Maximum Passenger Number: {{ object.max_passengers}}</p>
+                {% if object.special_info %}
+                    <p class="text-muted">Special Information: {{ object.special_info}}</p>
+                {% endif %}
+                <a style="position: relative; right:10px;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'driver-update' object.id %}">
+                        Edit My Profile
+                </a>
+            </div>
+        </article>
+{% endblock content %}

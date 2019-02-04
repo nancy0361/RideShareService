@@ -16,7 +16,6 @@
             <h3 style="text-align: center; font-weight: bold;">Become A Sharer!</h3><hr style="padding-bottom: 20px;">
                 <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'sharer-search'%}"> > Ride Search</a></h5>
                 <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'sharer-detail'%}"> > Ongoing Rides</a></h5>
-                <li><a href='#'>Another Link 3</a></li>
         </div>
         <div class="p-5"></div>
         <div class="p-2 flex-fill bg-danger">
@@ -24,8 +23,9 @@
             <br/>
             <h3 style="text-align: center; font-weight: bold;">Become A Driver!</h3><hr style="padding-bottom: 20px;">
             {% if isDriver %}
+                <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'driver-profile' driverID%}"> > My Profile</a></h5>
                 <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'driver-confirmed-requests'%}"> > My Confirmed Requests</a></h5>
-                <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'driver-requests'%}"> > Find a New Request</a></h5>
+                <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'driver-requests'%}"> > Find a New Request</a></h5> 
             {% else %}
                 <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'driver-create'%}"> > Become A Driver</a></h5>
             {% endif%}  

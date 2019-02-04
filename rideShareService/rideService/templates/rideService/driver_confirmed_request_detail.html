@@ -16,8 +16,8 @@
                     <p class="article-content">{{ object.sharer.username}} sharers this ride.</p>
                     <p class="article-content">Number of shsrers: {{ object.num_sharer}}</p>
                 {% endif %}
-                <a style="position: relative; right:10px;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'accept-request' object.id object.last_updated %}">
-                        Accpet This Request
+                <a style="position: relative; right:10px;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'driver-requests' %}">
+                        Go Back
                 </a>
             </div>
         </article>

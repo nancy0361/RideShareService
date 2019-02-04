@@ -19,7 +19,7 @@ urlpatterns = [
     
     # Ride Searching/Status Viewing (Owner)
     path('owner/requests/', views.ownerRequest, name='owner-all-requests'),
-    path('request/<int:pk>/detail/', views.RequestDetailView.as_view(), name='request-detail'),
+    path('owner/requests/<int:pk>/detail/', views.RequestDetailView.as_view(), name='request-detail'),
 
     # Ride Searching/Status Viewing (Sharer)
     path('sharer/search/',views.SharerSearchView, name = 'sharer-search'),
@@ -31,11 +31,13 @@ urlpatterns = [
     path('driver/requests/find', views.driverFindRequest, name='driver-requests'),
     path('driver/requests/confirmed', views.driverConfirmedRides, name='driver-confirmed-requests'),
     path('driver/requests/<int:pk>/complete', views.DriverCompleteRides, name='complete-request'),
-    path('driver/request/<int:pk>/detail/', views.DriverRequestDetailView.as_view(), name='driver-request-detail'),
-    path('driver/requests/<int:pk>/<timestamp>/accept', views.driverAccpetRequest, name='accept-request'),
+    path('driver/requests/<int:pk>/detail/', views.DriverRequestDetailView.as_view(), name='driver-request-detail'),
+    path('driver/requests/confirmed/<int:pk>/detail/', views.DriverConfirmedRequestDetailView.as_view(), name='driver-confirmed-request-detail'),
+    path('driver/requests/<int:pk>/<time>/accept', views.driverAccpetRequest, name='accept-request'),
 
     # Registration/Edit (Driver)
     path('driver/create', views.DriverCreateView.as_view(), name='driver-create'),
+    path('driver/<int:pk>/profile/', views.DriverDetailView.as_view(), name='driver-profile'),
     path('driver/<int:pk>/update/', views.DriverUpdateView.as_view(), name='driver-update'),
 
     # Homepage
